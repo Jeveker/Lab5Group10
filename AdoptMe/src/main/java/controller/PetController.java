@@ -141,7 +141,10 @@ public class PetController {
         boolean adopted;
         
     }
-    
+
+    /**
+    * Saves all pets so that they can be exported in a JSON format.
+    **/
     public void savePetsToJson() {
     	
         List<ExportablePet> exportableList = new ArrayList<>();
