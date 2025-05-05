@@ -8,6 +8,10 @@ import java.io.InputStreamReader;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.List;
+import java.io.FileWriter;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Handles loading and managing ALL pets for the shelter (regular and exotic)
@@ -137,4 +141,64 @@ public class PetController {
         boolean adopted;
         
     }
+    
+    public void savePetsToJson() {
+    	
+        List<ExportablePet> exportableList = new ArrayList<>();
+
+        for (Pet pet : shelter.getAllPets()) {
+        	
+            exportableList.add(new ExportablePet(
+            		
+                pet.getName(),
+                pet.getAge(),
+                pet.getSpecies(),
+                pet.isAdopted()
+                
+            ));
+            
+        }
+
+        // Using YYYYMMDD HHMMSS format for exported file name
+        String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        
+        String filename = timestamp + "_pets.json";
+
+        try (FileWriter writer = new FileWriter(filename)) {
+        	
+            Gson gson = new Gson();
+            
+            gson.toJson(exportableList, writer);
+            
+            System.out.println("Export Successful! Exported Filename: " + filename);
+            
+        } 
+        
+        catch (IOException e) {
+        	
+            System.err.println("An unexpected error occured while saving pet information to a file: " + e.getMessage());
+        
+        }
+    }
+    
+    /**
+     * Represents a pet in format for saving to JSON file
+     */
+    private static class ExportablePet {
+    	
+        String name;
+        int age;
+        String species;
+        boolean adopted;
+
+        public ExportablePet(String name, int age, String species, boolean adopted) {
+        	
+            this.name = name;
+            this.age = age;
+            this.species = species;
+            this.adopted = adopted;
+            
+        }
+    }
+
 }
