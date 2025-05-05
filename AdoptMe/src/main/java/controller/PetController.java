@@ -200,5 +200,90 @@ public class PetController {
             
         }
     }
+    
+    /**
+     * Attempts to adopt a pet by name
+     * @param name name of the pet to adopt
+     * @return success message or error
+     */
+    public String adoptPetByName(String name) {
+    	
+        for (Pet pet : shelter.getAllPets()) {
+        	
+            if (pet.getName().equalsIgnoreCase(name)) {
+            	
+                if (pet.isAdopted()) {
+                	
+                    return name + " has already been adopted.";
+                    
+                    
+                } 
+                else {
+                    pet.setAdopted(true);
+                    return name + " has been adopted! Enjoy your new pet!";
+                    
+                }
+            }
+        }
+        
+        return "No pet found with the name: " + name;
+    }
+
+    /**
+     * Adds a new pet to the shelter
+     * @param type Dog, Cat, or Rabbit
+     * @param name pet's name
+     * @param age pet's age
+     * @return success message or error
+     */
+    public String addPet(String type, String name, int age) {
+    	
+        Pet newPet = null;
+        
+        switch (type) {
+        
+            case "Dog":
+                newPet = new Dog(name, age, false);
+                break;
+                
+            case "Cat":
+                newPet = new Cat(name, age, false);
+                break;
+                
+            case "Rabbit":
+                newPet = new Rabbit(name, age, false);
+                break;
+                
+            default:
+                return "Unexpected pet type.";
+                
+        }
+
+        shelter.addPet(newPet);
+        
+        return type + " named " + name + " has been added.";
+        
+    }
+
+    /**
+     * Removes a pet from the shelter by name
+     * @param name name of the pet to remove
+     * @return success message or error
+     */
+    public String removePetByName(String name) {
+    	
+        for (Pet pet : shelter.getAllPets()) {
+        	
+            if (pet.getName().equalsIgnoreCase(name)) {
+            	
+                shelter.removePet(pet);
+                return name + " has been removed from the shelter.";
+                
+            }
+        }
+        
+        return "No pet found with the name: " + name;
+    }
+
 
 }
