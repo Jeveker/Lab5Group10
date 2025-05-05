@@ -20,6 +20,9 @@ public class PetView extends JFrame{
 	private JComboBox<String> sortComboBox;
 	private JButton addPetButton;
 	private JButton adoptPetButton;
+	private JButton removePetButton;
+	private JButton viewDetailsButton;
+	private JButton saveButton;
 	private JList<Pet> petJList;
 	private DefaultListModel<Pet> petListModel;
 	
@@ -34,11 +37,18 @@ public class PetView extends JFrame{
 		sortComboBox = new JComboBox<>(new String[] {"Name", "Age", "Species"});
 		addPetButton = new JButton("Add Pet");
 		adoptPetButton = new JButton("Adopt Pet");
+		removePetButton = new JButton("Remove Pet");
+		viewDetailsButton = new JButton("View Details");
+		saveButton = new JButton("Save Pet");
 		
 		panel.add(new JLabel("Sort by:"));
 		panel.add(sortComboBox);
 		panel.add(addPetButton);
 		panel.add(adoptPetButton);
+		panel.add(removePetButton);
+		panel.add(viewDetailsButton);
+		panel.add(saveButton);
+		
 	
 		petListModel = new DefaultListModel<>();
 		petJList = new JList<>(petListModel);
@@ -64,10 +74,35 @@ public class PetView extends JFrame{
 		return petJList;
 	}
 
+	public JButton getRemovePetButton() {
+		return removePetButton;
+	}
+
+	public void setRemovePetButton(JButton removePetButton) {
+		this.removePetButton = removePetButton;
+	}
+
+	public JButton getViewDetailsButton() {
+		return viewDetailsButton;
+	}
+
+	public void setViewDetailsButton(JButton viewDetailsButton) {
+		this.viewDetailsButton = viewDetailsButton;
+	}
+
+	public JButton getSaveButton() {
+		return saveButton;
+	}
+
+	public void setSaveButton(JButton saveButton) {
+		this.saveButton = saveButton;
+	}
+		
+
 	public DefaultListModel<Pet> getPetListModel() {
 		return petListModel;
 	}
-	
+		
 	//updates the pet list
 		public void updatePetList(List<Pet> pets) {
 			petListModel.clear();
