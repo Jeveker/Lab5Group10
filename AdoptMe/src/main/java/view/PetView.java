@@ -31,7 +31,7 @@ public class PetView extends JFrame{
 		setLayout(new BorderLayout());
 		
 		JPanel panel = new JPanel();
-		sortComboBox = new JComboBox<>(new String[] {"Name", "Age"});
+		sortComboBox = new JComboBox<>(new String[] {"Name", "Age", "Species"});
 		addPetButton = new JButton("Add Pet");
 		adoptPetButton = new JButton("Adopt Pet");
 		
