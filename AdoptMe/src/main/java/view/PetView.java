@@ -57,7 +57,7 @@ public class PetView extends JFrame{
 		add(scrollPane, BorderLayout.CENTER);
 	}
 	
-	//GETTERS
+	//GETTERS AND SETTERS
 	public JComboBox<String> getSortComboBox() {
 		return sortComboBox;
 	}
@@ -99,6 +99,10 @@ public class PetView extends JFrame{
 	}
 		
 
+	/**
+	 * Allows for direct manipulation of the list model
+	 * @return
+	 */
 	public DefaultListModel<Pet> getPetListModel() {
 		return petListModel;
 	}
