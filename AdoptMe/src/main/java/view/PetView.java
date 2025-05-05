@@ -55,6 +55,11 @@ public class PetView extends JFrame{
 		JScrollPane scrollPane = new JScrollPane(petJList);
 		add(panel, BorderLayout.NORTH);
 		add(scrollPane, BorderLayout.CENTER);
+		
+		JPanel bottomPanel = new JPanel();
+		bottomPanel.add(saveButton);
+		add(bottomPanel, BorderLayout.SOUTH);
+
 	}
 	
 	//GETTERS AND SETTERS
